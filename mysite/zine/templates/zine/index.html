@@ -1,0 +1,23 @@
+{% extends 'zine/base.html' %}
+
+
+{% block content %}
+
+ 	<div>
+		<h2>Posts</h2>
+	
+		
+	    {% for item in list %}
+	        <li><a class="red invert-hover black-text" href="{% url 'zine:post_detail' item.id %}">{{ item.title }}</a> by {{item.author}}</li> 
+	    {% endfor %}
+	    <p>There are no posts</p>
+	</div>
+
+	<a href="{% url 'zine:get_post' %}">write a post</a>
+
+
+{% endblock %}
+
+
+
+

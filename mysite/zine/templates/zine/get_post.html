@@ -1,0 +1,12 @@
+{% extends 'zine/base.html' %}
+
+
+{% block content %}
+	<form action="{% url 'zine:write_post' %}" method="post">
+		{% csrf_token %}
+		<h2>Write Post</h2>
+		{{ form }}
+		<input type="submit" value="Submit" />
+	</form>
+
+{% endblock %}

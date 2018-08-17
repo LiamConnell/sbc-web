@@ -1,0 +1,39 @@
+{% extends 'zine/base.html' %}
+
+
+{% block content %}
+
+	<h2>{{post.title}}</h2>
+	<h5>posted by {{post.author}}</h5>
+	<div class="col-md-6" style="background-color: pink">
+
+ 		{{post.text}}
+ 	</div>
+
+ 	{% if post.comment_set.all %}
+		<h2>Comments</h2>
+		<div class="comments">
+		    {% for comment in post.comment_set.all %}
+		        <span>
+		            {{comment.author}}</a> said on {{ comment.created_on }}
+		        </span>
+		        <p>
+		            {{ comment.text }}
+		        </p>
+		    {% endfor %}
+		</div>
+		{% endif %}
+
+ 	<form action="{% url 'zine:write_comment' post.id %}" method="post">
+		{% csrf_token %}
+		<h2>Write Comment</h2>
+		<div class="col-md-6">
+			{{ form }}
+		</div>
+		<input type="submit" value="Submit" />
+	</form>
+
+{% endblock %}
+
+
+
